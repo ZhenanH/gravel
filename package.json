@@ -28,6 +28,12 @@
     "build-storybook": "build-storybook -s public"
   },
   "babel": {
+    
+      "plugins": [["import", {
+      "libraryName": "antd",
+      "style": true   
+    }]],
+
     "presets": [
       [
         "react-app",
