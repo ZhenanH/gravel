@@ -1,6 +1,6 @@
 {
   "name": "pp-gravel",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "dependencies": {
     "@types/jest": "24.0.18",
@@ -28,12 +28,15 @@
     "build-storybook": "build-storybook -s public"
   },
   "babel": {
-    
-      "plugins": [["import", {
-      "libraryName": "antd",
-      "style": true   
-    }]],
-
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "style": true
+        }
+      ]
+    ],
     "presets": [
       [
         "react-app",
