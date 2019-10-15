@@ -65,7 +65,8 @@
     "prettier": "^1.18.2",
     "storybook-addon-designs": "^5.1.1"
   },
-  "main": "dist/index.js",
+  "main": "dist/index",
+  "typings": "dist/index",
   "repository": "https://github.com/ZhenanH/gravel.git",
   "author": "Zhenan Hong <zhong@pebblepost.com>",
   "license": "MIT"

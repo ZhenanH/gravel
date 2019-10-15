@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button as AntButton} from 'antd';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
 
 export const Button = (props:any)=> {
@@ -10,12 +10,12 @@ export const Button = (props:any)=> {
     
 }
 
-Button.propTypes = {
-     /**
-    Use the loading state to indicate that the data Avatar needs is still loading.
-    */
+// Button.propTypes = {
+//      /**
+//     Use the loading state to indicate that the data Avatar needs is still loading.
+//     */
     
-}
+// }
 
 
 
