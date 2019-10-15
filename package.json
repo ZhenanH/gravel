@@ -1,6 +1,6 @@
 {
   "name": "pp-gravel",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "private": false,
   "dependencies": {
     "@types/jest": "24.0.18",
