@@ -1,6 +1,6 @@
 {
   "name": "pp-gravel",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": false,
   "dependencies": {
     "@types/jest": "24.0.18",
@@ -33,7 +33,7 @@
         "import",
         {
           "libraryName": "antd",
-          "libraryDirectory":"es",
+          "libraryDirectory": "es",
           "style": true
         }
       ]
