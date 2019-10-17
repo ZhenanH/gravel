@@ -13,31 +13,31 @@ export default {
   },
 };
 
-export const basic = () => <Select 
+export const basic = () => <div class="demo"><Select 
             defaultValue="Option A" 
             style={{ width: 120 }}
             dropdownMatchSelectWidth = {false}>
     <Option value="a">Option A</Option>
     <Option value="b">Option B</Option>
-</Select>;
+</Select></div>;
 
 
-export const wideContent = () => <Select 
+export const wideContent = () => <div class="demo"><Select 
             defaultValue="Option A" 
             style={{ width: 120 }}
             dropdownMatchSelectWidth = {false}
             >
     <Option value="a">Option A</Option>
     <Option value="b">Very long long long option name</Option>
-</Select>;
+</Select></div>;
 
-export const dropdownAlignRight = () => <Select 
+export const dropdownAlignRight = () =><div class="demo"> <Select 
             defaultValue="Option A" 
-            style={{ width: 120,marginLeft:100 }}
+            style={{ width: 120,position:"relative",left:100 }}
             dropdownMatchSelectWidth = {false}
             dropdownPlacement="right"
           >
     <Option value="a">Brand A</Option>
     <Option value="b">Very long long long option name</Option>
-</Select>;
+</Select></div>;
 
