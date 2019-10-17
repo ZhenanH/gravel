@@ -24,5 +24,9 @@
 }
 
 .demo > * {
-  margin:0px 24px 24px 0px;
+  margin:24px !important;
+}
+
+.ant-layout-sider-trigger {
+  position: static !important;
 }
