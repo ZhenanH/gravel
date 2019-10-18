@@ -1,17 +1,30 @@
 import React from 'react';
-import {ContentContainer} from '../../components/ContentContainer';
 import { Layout, Menu, Breadcrumb, Icon, Card,Avatar } from 'antd';
 //import PropTypes from 'prop-types';
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
+interface Props {
+  childrenType: string;
+  footerBar:object;
+}
 
-export class TopLayout extends React.Component  {
+interface State {
+  collapsed: boolean;
+}
+
+export class TopLayout extends React.Component<Props, State>  {
+  
+//   static defaultProps: Props = {
+//     products: []
+// }
+
+
     state = {
         collapsed: false,
       };
     
-      onCollapse = collapsed => {
+      onCollapse = (collapsed:any) => {
         console.log(collapsed);
         this.setState({ collapsed });
       };
