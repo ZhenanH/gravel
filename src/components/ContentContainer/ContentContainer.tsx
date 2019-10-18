@@ -6,7 +6,7 @@ import {Button, Card, Icon , Tooltip} from 'antd';
 export const ContentContainer = (props:any)=> {
 
         return (
-            <div style={{marginLeft:"auto",marginRight:"auto",width: props.childrenType==="form"?976:"calc(100vw - 304px)",minWidth:976}}>
+            <div style={{marginLeft:"auto",marginRight:"auto",width: props.childrenType==="form"?976:"auto",minWidth:976}}>
                 <Card
              bodyStyle = {props.style}
              title={
