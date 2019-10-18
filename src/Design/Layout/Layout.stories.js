@@ -35,3 +35,26 @@ extra = {[<Button style={{margin:"0 12px"}}>Cancel</Button>,<Button type="primar
 bodyStyle ={{padding:0}}
 ></Card>}/>
 </div>;
+
+
+export const reportingLayoutWithFilterPanel = () => <div>
+<TopLayout childrenType="report" 
+children={<div><Card style={{marginTop:24,height:"140vh"}}>Reporting</Card></div>}
+filterPanel={(toggle)=>{return <Card style={{height:"100%",position:"relative"}}><div onClick={toggle}
+style={{
+    position: "absolute",
+    top: "50%",
+    fontSize:11,
+    left: -38,
+    width: 60,
+    height: 16,
+    background: "#1b2ccc",
+    transform: "rotate(-90deg)",
+    borderRadius: "5px 5px 0 0",
+    color:"white",
+    display:"flex",
+    justifyContent:"center",
+    cursor:"pointer"
+  }}>filter</div></Card>}}
+/>
+</div>;
