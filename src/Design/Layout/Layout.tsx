@@ -7,10 +7,12 @@ const { SubMenu } = Menu;
 interface Props {
   childrenType: string;
   footerBar:object;
+  filterPanel:(toggle:object)=>{};
 }
 
 interface State {
   collapsed: boolean;
+  filterPanelCollapsed:boolean;
 }
 
 export class TopLayout extends React.Component<Props, State>  {
@@ -22,11 +24,16 @@ export class TopLayout extends React.Component<Props, State>  {
 
     state = {
         collapsed: false,
+        filterPanelCollapsed:false,
       };
     
-      onCollapse = (collapsed:any) => {
+      onCollapse = (collapsed:boolean) => {
         console.log(collapsed);
         this.setState({ collapsed });
+      };
+
+      onFilterToggle = () => {
+        this.setState({ filterPanelCollapsed:!this.state.filterPanelCollapsed });
       };
     
       render() {
@@ -72,30 +79,36 @@ export class TopLayout extends React.Component<Props, State>  {
                 extra = {<Avatar icon="user" />}
                 title = {
                 <Breadcrumb style={{ margin: '0 24px' }}>
-                <Breadcrumb.Item>Campaign Management</Breadcrumb.Item>
-                <Breadcrumb.Item>Campaigns</Breadcrumb.Item>
+                <Breadcrumb.Item>First level menu</Breadcrumb.Item>
+                <Breadcrumb.Item>Second level menu</Breadcrumb.Item>
               </Breadcrumb>}
                 bodyStyle ={{padding:0}}>
                 </Card>
               </Header>
-              <Content style={{ margin: '0 0 0 24px',overflowX:"scroll", display:"flex",flexDirection:"column"}}>
-              {
-                this.props.childrenType==="table"?
-                this.props.children:
-                <div style={{marginLeft:"auto",marginRight:"auto" ,width:976}}>
+              <Layout>
+                
+              <Content style={{ padding: '0 24px 0 24px',overflowX:"scroll", display:"flex",flexDirection:"column"}}>
+        
                 {this.props.children}
-                </div>}
+     
                 <div style={{ flex:1 }}></div>
-                <div style={{ textAlign: 'center',padding:"0 0 24px 0" }}>Pebblepost ©2019</div>
+                <div style={{ textAlign: 'center',padding:"24px 0 24px 0" }}>Pebblepost ©2019</div>
 
                 </Content>
-
+                {this.props.filterPanel&&this.props.childrenType==="report"?
+              <Sider trigger={null} collapsedWidth={1} collapsible collapsed={this.state.filterPanelCollapsed}  width={256}
+              style={{backgroundColor:"rgba(0,0,0,0)"}}>
+                 {this.props.filterPanel(this.onFilterToggle)} 
+              </Sider>:null
+             }
+              </Layout>
               <Footer style={{padding:0}}>
                <div>
                    {this.props.footerBar}
               </div>
                
               </Footer>
+              
             </Layout>
           </Layout>
         );

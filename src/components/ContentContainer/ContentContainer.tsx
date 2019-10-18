@@ -4,9 +4,10 @@ import {Button, Card, Icon , Tooltip} from 'antd';
 
 
 export const ContentContainer = (props:any)=> {
-        
+
         return (
-            <Card
+            <div style={{marginLeft:"auto",marginRight:"auto",width: props.childrenType==="form"?976:"calc(100vw - 304px)",minWidth:976}}>
+                <Card
              bodyStyle = {props.style}
              title={
                     <div>
@@ -17,11 +18,12 @@ export const ContentContainer = (props:any)=> {
                     </div>
                     }
              type="inner"
-             style={{ width: props.childrenType==="form"?976:"calc(100vw - 304px)", minWidth:976}}
+             style={{ }}
              extra={props.action?<Button type="primary" icon="plus">{props.action}</Button>:null}>
              {props.childrenType}
              <br/>
              </Card>
+             </div>
         );
     
 }
