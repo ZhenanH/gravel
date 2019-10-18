@@ -1,7 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import {ContentContainer} from '../../components/ContentContainer';
-import { Card, Button } from 'antd';
 
 import '../../App.css';
 

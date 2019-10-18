@@ -1,5 +1,5 @@
 import React from 'react';
-import { linkTo } from '@storybook/addon-links';
+//import { linkTo } from '@storybook/addon-links';
 import Intro  from './Intro';
 import Color  from './Color';
 
