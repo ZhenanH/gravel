@@ -19,24 +19,25 @@ export default {
 export const filtersInRightPanel = () => <div>
 <TopLayout childrenType="report" 
 children={<div><Card style={{marginTop:24,height:"140vh"}}>Reporting</Card></div>}
-filterPanel={(toggle)=>{return <Card style={{height:"100%",position:"relative",overflowY:"scroll"}}><div onClick={toggle}
-style={{
-    position: "absolute",
-    top: "50%",
-    fontSize:11,
-    left: -38,
-    width: 60,
-    height: 16,
-    background: "#1b2ccc",
-    transform: "rotate(-90deg)",
-    borderRadius: "5px 5px 0 0",
-    color:"white",
-    display:"flex",
-    justifyContent:"center",
-    cursor:"pointer"
-  }}>filter</div>
-  
-  <style>
+filterPanel={(toggle)=>{return <div style={{position:"relative",height:"100%"}}>
+    <div onClick={toggle}
+        style={{
+            position: "absolute",
+            top: "50%",
+            fontSize:11,
+            left: -38,
+            width: 60,
+            height: 16,
+            background: "#1b2ccc",
+            transform: "rotate(-90deg)",
+            borderRadius: "5px 5px 0 0",
+            color:"white",
+            display:"flex",
+            justifyContent:"center",
+            cursor:"pointer"
+        }}>filter</div>
+    <Card style={{height:"100%",overflowY:"scroll"}}>
+        <style>
               {
                   `
                   .ant-select-selection__choice__content {
@@ -121,6 +122,6 @@ style={{
     <Option value="d">Very long long long long long long brand name</Option>
     <Option value="e">Very long long long brand name</Option>
 </Select>
-  </Card>}}
+  </Card></div>}}
 />
 </div>;
