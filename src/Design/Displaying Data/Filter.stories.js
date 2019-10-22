@@ -4,7 +4,7 @@ import { Card,Tooltip } from 'antd';
 import {Select, Option} from '../../components/Select';
 
 export default {
-    title: 'Design | Guideline / Displaying Data',
+    title: 'Prototyping | Filter Panel',
     parameters: {
       //component: Filter,
       componentSubtitle: 'An input widget to let user select a list of options in dropdown to filter data',
@@ -45,19 +45,35 @@ filterPanel={(toggle)=>{return <div style={{position:"relative",height:"100%"}}>
                   }
                   
                   .ant-select-selection--multiple .ant-select-selection__rendered > ul > li {
-                      height:auto;
+                      height:auto !important;
+                  }
+
+                  .ant-select-selection__choice__content{
+                      font-size:12px;
+                      padding:2px 0 0 0;
+                  }
+
+                  .ant-tooltip-inner {
+                      padding:6px 16px 6px 8px !important;
+                  }
+
+                  .ant-select-selection__placeholder, .ant-select-search__field__placeholder {
+                      font-size:12px;
+                      top:60%;
                   }
 
                   p  {
                       margin-top:1em;
                   }
+
+                 
                   `
               }
           </style>
           <p>Brand</p>
-  <Select 
+  <Select size="small"
   maxTagCount={0}
-  maxTagPlaceholder={(value)=>{return <Tooltip title={<ul>{value.map(v=><li>{v}</li>)}</ul>}>{value.length} brands selected</Tooltip>}}
+  maxTagPlaceholder={(value)=>{return <Tooltip overlayStyle={{maxWidth:"unset",}} placement="bottomRight" title={<ul>{value.map(v=><li>{v}</li>)}</ul>}>{value.length} brands selected</Tooltip>}}
             mode="multiple"
             placeholder="Select brands"
             style={{ width: "100%" }}
@@ -75,6 +91,7 @@ filterPanel={(toggle)=>{return <div style={{position:"relative",height:"100%"}}>
 <p>Brand</p>
 
   <Select 
+  size="small"
             mode="multiple"
             placeholder="Select brands"
             style={{ width: "100%" }}
@@ -92,6 +109,7 @@ filterPanel={(toggle)=>{return <div style={{position:"relative",height:"100%"}}>
 <p>Brand</p>
 
   <Select 
+  size="small"
             mode="multiple"
             placeholder="Select brands"
             style={{ width: "100%" }}
@@ -109,6 +127,7 @@ filterPanel={(toggle)=>{return <div style={{position:"relative",height:"100%"}}>
 <p>Brand</p>
 
   <Select 
+  size="small"
             mode="multiple"
             placeholder="Select brands"
             style={{ width: "100%" }}
