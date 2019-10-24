@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card, Icon , Tooltip} from 'antd';
+import { Card, Icon , Tooltip} from 'antd';
 //import PropTypes from 'prop-types';
 
 
@@ -19,8 +19,8 @@ export const ContentContainer = (props:any)=> {
                     }
              type="inner"
              style={{ }}
-             extra={props.action?<Button type="primary" icon="plus">{props.action}</Button>:null}>
-             {props.childrenType}
+             extra={props.actions?props.actions.map((button:any)=><span style={{marginLeft:12}}>{button}</span>):null}>
+             {props.children}
              <br/>
              </Card>
              </div>

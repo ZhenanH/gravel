@@ -1,6 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import {ContentContainer} from './ContentContainer';
+import {Button} from 'antd';
 import '../../App.css';
 
 
@@ -13,12 +14,12 @@ export default {
 };
 
 
-export const containerWithButton = () => <div class="demo">
-  <ContentContainer title="Campaign Manager" action="Create New Campaign"/>
+export const containerWithButton = () => <div className="demo">
+  <ContentContainer title="Campaign Manager" actions={[<Button type="primary" icon="plus">Create New Campaign</Button>]}/>
   </div>;
 
 
-export const containerWithSubtitle = () => <div class="demo">
+export const containerWithSubtitle = () => <div className="demo">
   <ContentContainer info="A file derived from existing customer records, 
 and/or additional customer segments, that your 
 targeted prospects will 'Look-alike'." 
