@@ -92,8 +92,7 @@ export class TopLayout extends React.Component<Props, State>  {
                 {this.props.children}
      
                 <div style={{ flex:1 }}></div>
-                <div style={{ textAlign: 'center',padding:"24px 0 24px 0" }}>Pebblepost ©2019</div>
-
+                
                 </Content>
                 {this.props.filterPanel&&this.props.childrenType==="report"?
               <Sider trigger={null} collapsedWidth={1} collapsible collapsed={this.state.filterPanelCollapsed}  width={256}
