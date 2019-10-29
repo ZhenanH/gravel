@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import {TopLayout} from '../Layout';
-import { Button,Tag,Select } from 'antd';
+import { Button,Tag,Select,DatePicker,Input,Icon } from 'antd';
 import {ContentContainer} from '../../components/ContentContainer';
 import {ExpandedTable} from './ExpandedTable';
+import moment from 'moment';
 const { Option } = Select;
+const { RangePicker } = DatePicker;
+const InputGroup = Input.Group;
 
 export default {
     title: 'Prototyping | Inline Metrics',
@@ -272,7 +275,7 @@ export default {
     return {
          key:"flight"+Math.random(),
          id:Math.round(Math.random()*1000),
-           name: <span><Tag color="cyan">Ft</Tag>{name}</span>,
+           name: <span><Tag color="cyan">Fight</Tag>{name}</span>,
            todaySend:1000+Math.round(Math.random()*1000),
            todayConversion:200,
            dailyGoal:1000,
@@ -294,8 +297,8 @@ export default {
            children:[
                {
                 key:"strategy1"+Math.random(),
-                name:<div style={{display:"flex"}}><div style={{marginRight:24}}><Tag color="green" style={{display:'inline'}}>Sy</Tag>OneKingLane_Prospects_InteriorDesign_AllGeos</div>
-                <div><Tag color="gold" style={{display:'inline'}}>Ce</Tag>OKL_InteriorDesign_OKL20STYLISH_4pgCatalog_10.3upload_11.15exp</div></div>,
+                name:<div style={{display:"flex"}}><div style={{marginRight:24}}><Tag color="green" style={{display:'inline'}}>Strategy</Tag>OneKingLane_Prospects_InteriorDesign_AllGeos</div>
+                <div><Tag color="gold" style={{display:'inline'}}>Creative</Tag>OKL_InteriorDesign_OKL20STYLISH_4pgCatalog_10.3upload_11.15exp</div></div>,
                 //id:Math.round(Math.random()*1000),
                 dailyGoal:500,
                 todaySend:500+Math.round(Math.random()*500),
@@ -306,8 +309,8 @@ export default {
                },
                {
                 key:"strategy2"+Math.random(),
-                name:<div style={{display:"flex"}}><div style={{marginRight:24}}><Tag color="green" style={{display:'inline'}}>Sy</Tag>OneKingLane_Customers_InteriorDesign_AllGeos</div>
-                   <div><Tag color="gold" style={{display:'inline'}}>Ce</Tag>OKL_InteriorDesign_OKL20STYLISH_4pgCatalog_10.3upload_11.15exp</div></div>,
+                name:<div style={{display:"flex"}}><div style={{marginRight:24}}><Tag color="green" style={{display:'inline'}}>Strategy</Tag>OneKingLane_Customers_InteriorDesign_AllGeos</div>
+                   <div><Tag color="gold" style={{display:'inline'}}>Creative</Tag>OKL_InteriorDesign_OKL20STYLISH_4pgCatalog_10.3upload_11.15exp</div></div>,
                 //id:Math.round(Math.random()*1000),
                 dailyGoal:500,
                 todaySend:500+Math.round(Math.random()*500),
@@ -336,7 +339,7 @@ export default {
     {
       key: "campaign1",
       id:Math.round(Math.random()*1000),
-      name: <span><Tag color="blue">Cn</Tag>One Kings Lane : 2019 Evergreen Budget PP-14066</span>,
+      name: <span><Tag color="blue">Campaign</Tag>One Kings Lane : 2019 Evergreen Budget PP-14066</span>,
       todaySend:6334,
       todayConversion:200,
       dailyGoal:1000,
@@ -361,7 +364,7 @@ export default {
     {
     id:Math.round(Math.random()*1000),
       key: "campaign2",
-      name: <span><Tag color="blue">Cn</Tag>One Kings Lane - Aug 2018 - Feb 2019- PP-13699</span>,
+      name: <span><Tag color="blue">Campaign</Tag>One Kings Lane - Aug 2018 - Feb 2019- PP-13699</span>,
       todaySend:5134,
       todayConversion:300,
       dailyGoal:1500,
@@ -403,12 +406,29 @@ export const CampaignInlineMetricsWithAllHierarchy = (props) =>{
     const [breakdownBy, setBreakdownBy] = useState("campaign");  
 
 return <TopLayout childrenType="table" children={<div style={{margin:"24px 0 24px 0"}}><ContentContainer title="Campaign Manager" 
-actions={[<Select value={{key:breakdownBy}} labelInValue={true} onChange={(value)=>setBreakdownBy(value.key)} >
+actions={[
+<InputGroup compact>
+    <Select defaultValue="Event day">
+      <Option value="Event day">Event day</Option>
+      <Option value="Send day">Send day</Option>
+    </Select>
+    <RangePicker 
+    style={{width:230}}
+    ranges={{
+        'Past 14 days': [moment().subtract(14, 'days'), moment()],
+        'Past 30 days': [moment().subtract(30, 'days'), moment()],
+        'Month to date': [moment().startOf('month'), moment().endOf('month')],
+      }}/>
+</InputGroup>,
+<Select value={{key:breakdownBy}} labelInValue={true} onChange={(value)=>setBreakdownBy(value.key)} style={{width:190}}>
     <Option value="campaign"><span style={{color:"rgba(0,0,0,0.65)"}}>Breakdown: <span style={{color:'black'}}>Campaign</span></span></Option>
     <Option value="flight"><span style={{color:"rgba(0,0,0,0.65)"}}>Breakdown: <span style={{color:'black'}}>Flight</span></span></Option>
     <Option value="flightset"><span style={{color:"rgba(0,0,0,0.65)"}}>Breakdown: <span style={{color:'black'}}>Flight set</span></span></Option>
 </Select>,
-<Button type="primary" icon="plus">Create New Campaign</Button>]}
+<Button icon='download'>Export</Button>,
+<Button type="primary" icon="plus">Create New Campaign</Button>
+
+]}
  childrenType="table"
 style={{padding:"1px 0 0 0"}}
 children={
@@ -421,25 +441,71 @@ breakdownBy = {breakdownBy}
 }/></div>}/>;
 }
 
-export const FixedTableHead = (props) =>{
+export const MinorImprovement = (props) =>{
     const [breakdownBy, setBreakdownBy] = useState("campaign");  
-
+  
 return <TopLayout childrenType="table" children={<div style={{margin:"24px 0 24px 0"}}><ContentContainer title="Campaign Manager" 
-actions={[<Select value={{key:breakdownBy}} labelInValue={true} onChange={(value)=>setBreakdownBy(value.key)} >
+actions={[
+    <InputGroup compact>
+    <Select defaultValue="Event day">
+      <Option value="Event day">Event day</Option>
+      <Option value="Send day">Send day</Option>
+    </Select>
+    <RangePicker 
+    defaultValue={[moment().subtract(14, 'days'), moment()]}
+    style={{width:230}}
+    ranges={{
+        'Past 14 days': [moment().subtract(14, 'days'), moment()],
+        'Past 30 days': [moment().subtract(30, 'days'), moment()],
+        'Month to date': [moment().startOf('month'), moment().endOf('month')],
+      }}/>
+</InputGroup>,
+<Select value={{key:breakdownBy}} labelInValue={true} onChange={(value)=>setBreakdownBy(value.key)} style={{width:190}}>
     <Option value="campaign"><span style={{color:"rgba(0,0,0,0.65)"}}>Breakdown: <span style={{color:'black'}}>Campaign</span></span></Option>
     <Option value="flight"><span style={{color:"rgba(0,0,0,0.65)"}}>Breakdown: <span style={{color:'black'}}>Flight</span></span></Option>
     <Option value="flightset"><span style={{color:"rgba(0,0,0,0.65)"}}>Breakdown: <span style={{color:'black'}}>Flight set</span></span></Option>
 </Select>,
-<Button type="primary" icon="plus">Create New Campaign</Button>]}
+<Button icon='download'>Export</Button>,
+<Button type="primary" icon="plus">Create New Campaign</Button>
+]}
  childrenType="table"
 style={{padding:"1px 0 0 0"}}
 children={
-<ExpandedTable  dataSource={data2()}
+<ExpandedTable  
+dataSource={data2()}
 expandIconAsCell={true} 
 expandIconColumnIndex={1} 
 getDailys = {getDailys}
 breakdownBy = {breakdownBy}
 scrollY="calc(100vh - 304px)"
+expandIcon={(props)=>{
+    if(breakdownBy==="campaign"){
+        return props.expanded&&props.expandable?<Button size="small" icon="calendar" type="link" onClick={e=>props.onExpand(props.record, e)} style={{marginRight:4,transitionDuration:"0.1s",color:"#1b2ccc"}}/>:<Button size="small" icon="calendar" type="link" onClick={e=>props.onExpand(props.record, e)} style={{marginRight:4,transitionDuration:"0.1s",display:props.expandable?"block":"none",color:"rgba(0,0,0,0.45)"}}/>
+    }
+    if(breakdownBy==="flight"){
+        if(props.record.key.indexOf("campaign")>=0){
+           return props.expanded&&props.expandable?<Button size="small" type="link" icon="right" onClick={e=>props.onExpand(props.record, e)} style={{marginRight:4,transform:"rotate(90deg)",transitionDuration:"0.1s"}}/>
+:<Button size="small" onClick={e=>props.onExpand(props.record, e)} icon="right" type="link" style={{marginRight:4,transitionDuration:"0.1s",display:props.expandable?"block":"none"}}/>
+        }
+        else{
+            return props.expanded&&props.expandable?<Button size="small" icon="calendar" type="link" onClick={e=>props.onExpand(props.record, e)} style={{marginRight:4,transitionDuration:"0.1s",color:"#1b2ccc"}}/>:<Button size="small" icon="calendar" type="link" onClick={e=>props.onExpand(props.record, e)} style={{marginRight:4,transitionDuration:"0.1s",display:props.expandable?"block":"none",color:"rgba(0,0,0,0.45)"}}/>
+            //<div className="ant-table-row-expand-icon ant-table-row-expanded" onClick={e=>props.onExpand(props.record, e)} style={{marginRight:8,transitionDuration:"0.1s"}}/>:<div className="ant-table-row-expand-icon ant-table-row-collapsed" onClick={e=>props.onExpand(props.record, e)} style={{marginRight:8,transitionDuration:"0.1s",display:props.expandable?"block":"none"}}/>
+    
+        }
+    }
+    if(breakdownBy==="flightset"){
+        if(props.record.key.indexOf("campaign")>=0||props.record.key.indexOf("flight")>=0){
+            return props.expanded&&props.expandable?<Button size="small" type="link" icon="right" onClick={e=>props.onExpand(props.record, e)} style={{marginRight:4,transform:"rotate(90deg)",transitionDuration:"0.1s"}}/>
+ :<Button size="small" onClick={e=>props.onExpand(props.record, e)} icon="right" type="link" style={{marginRight:4,transitionDuration:"0.1s",display:props.expandable?"block":"none"}}/>
+         }
+         else{
+            return props.expanded&&props.expandable?<Button size="small" icon="calendar" type="link" onClick={e=>props.onExpand(props.record, e)} style={{marginRight:4,transitionDuration:"0.1s",color:"#1b2ccc"}}/>:<Button size="small" icon="calendar" type="link" onClick={e=>props.onExpand(props.record, e)} style={{marginRight:4,transitionDuration:"0.1s",display:props.expandable?"block":"none",color:"rgba(0,0,0,0.45)"}}/>
+            //<div className="ant-table-row-expand-icon ant-table-row-expanded" onClick={e=>props.onExpand(props.record, e)} style={{marginRight:8,transitionDuration:"0.1s"}}/>:<div className="ant-table-row-expand-icon ant-table-row-collapsed" onClick={e=>props.onExpand(props.record, e)} style={{marginRight:8,transitionDuration:"0.1s",display:props.expandable?"block":"none"}}/>
+    
+        }
+    }
+    
+
+}}
 />
-}/></div>}/>;
-}
+}/></div>}/>;}

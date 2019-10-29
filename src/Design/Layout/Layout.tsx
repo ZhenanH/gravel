@@ -23,7 +23,7 @@ export class TopLayout extends React.Component<Props, State>  {
 
 
     state = {
-        collapsed: false,
+        collapsed: true,
         filterPanelCollapsed:false,
       };
     
