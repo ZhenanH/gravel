@@ -22,7 +22,7 @@ export class  ExpandedTable extends React.Component<Props, State> {
  
     state = {
        expandedRowKeys:[],
-       nameColumnWidth:300,
+       nameColumnWidth:500,
        breakDownData:this.props.dataSource
       };
   
@@ -66,7 +66,7 @@ export class  ExpandedTable extends React.Component<Props, State> {
                     dataIndex: 'id',
                     key: 'id',
                     fixed: 'left',
-                    width:100
+                    width:60
                   },
                 {
                   title: 'Name',
@@ -199,7 +199,7 @@ export class  ExpandedTable extends React.Component<Props, State> {
                     align:"right"
                   },
                   {
-                    title: '',
+                    title: <div style={{color:"rgba(0,0,0,0)"}}>actw</div>,
                     dataIndex: 'actions',
                     key: 'actions',
                     width:10,
@@ -247,27 +247,35 @@ export class  ExpandedTable extends React.Component<Props, State> {
                       min-height:59px;
                   }
 
+                  .nameColumn button {
+                      flex-shrink:0;
+                  }
+
+
                   .hideColumn {
                       display:none;
+                  }
+                  .ant-card-extra {
+                      display:flex;
                   }
            
                   `
               }
           </style>
-            <Table columns={columns}  scroll={{ x:"100% ",y:this.props.scrollY} }
+            <Table columns={columns}  scroll={{ x:"100%",y:this.props.scrollY} }
             {...this.props}
             dataSource = {this.props.breakdownBy==="campaign"?this.props.dataSource.map((c:any)=>{c.children=this.props.getDailys(14);return c;}):(this.props.breakdownBy==="flight"?this.props.dataSource.map((c:any)=>{c.children.map((f:any)=>{f.children=this.props.getDailys(14);});  return c;}):this.props.dataSource)}
-            indentSize = {36}
+            //indentSize = {24}
             onExpand={(expanded:any, record:any)=>{
             //console.log(record);
-            this.setState({nameColumnWidth:300});
+            // this.setState({nameColumnWidth:600});
 
-            if(expanded && record.key.indexOf('flight')>=0 && this.props.breakdownBy==="flightset"){
-                this.setState({nameColumnWidth:600})
-            }
-            if( record.key.indexOf('strategy')>=0){
-                this.setState({nameColumnWidth:600})
-            }
+            // if(expanded && record.key.indexOf('flight')>=0 && this.props.breakdownBy==="flightset"){
+            //     this.setState({nameColumnWidth:600})
+            // }
+            // if( record.key.indexOf('strategy')>=0){
+            //     this.setState({nameColumnWidth:600})
+            // }
             }
 }
 

@@ -19,7 +19,7 @@ export const ContentContainer = (props:any)=> {
                     }
              type="inner"
              style={{ }}
-             extra={props.actions?props.actions.map((button:any)=><span key={Math.random()} style={{marginLeft:12}}>{button}</span>):null}>
+             extra={props.actions?props.actions.map((button:any)=><div key={Math.random()} style={{marginLeft:12,display:"inline-block"}}>{button}</div>):null}>
              {props.children}
              <br/>
              </Card>
