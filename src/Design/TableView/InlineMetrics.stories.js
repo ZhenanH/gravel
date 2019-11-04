@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {TopLayout} from '../Layout';
-import { Button,Tag,Select,DatePicker,Input,Icon } from 'antd';
+import { Button,Tag,Select,DatePicker,Input,Icon,Menu, Dropdown } from 'antd';
 import {ContentContainer} from '../../components/ContentContainer';
 import {ExpandedTable} from './ExpandedTable';
 import moment from 'moment';
@@ -444,6 +444,13 @@ breakdownBy = {breakdownBy}
 export const MinorImprovement = (props) =>{
     const [breakdownBy, setBreakdownBy] = useState("campaign");  
   
+    const menu = (
+        <Menu >
+          <Menu.Item key="1">Export All</Menu.Item>
+          <Menu.Item key="2">Export current view</Menu.Item>
+        </Menu>
+      );
+
 return <TopLayout childrenType="table" children={<div style={{margin:"24px 0 24px 0"}}><ContentContainer title="Campaign Manager" 
 actions={[
     <InputGroup compact>
@@ -465,7 +472,11 @@ actions={[
     <Option value="flight"><span style={{color:"rgba(0,0,0,0.65)"}}>Breakdown: <span style={{color:'black'}}>Flight</span></span></Option>
     <Option value="flightset"><span style={{color:"rgba(0,0,0,0.65)"}}>Breakdown: <span style={{color:'black'}}>Flight set</span></span></Option>
 </Select>,
-<Button icon='download'>Export</Button>,
+<Dropdown overlay={menu}>
+      <Button>
+        Export <Icon type="down" />
+      </Button>
+    </Dropdown>,
 <Button type="primary" icon="plus">Create New Campaign</Button>
 ]}
  childrenType="table"
