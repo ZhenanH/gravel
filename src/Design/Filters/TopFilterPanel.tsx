@@ -50,12 +50,12 @@ const createFilter = (active:boolean)=><div style={{display:active?"block":"none
 export class TopFilterPanel extends React.Component<Props, State>  {
     state = {
         activeKey:"0",
-        activeFilters:[],
+        activeFilters:[] as number[],
     }
     render() {
         return (<div style={this.props.style}>
            <div style={{display:"flex",alignItems:"center"}}>
-           <Button onClick={()=>this.setState({activeKey:"0"})} type={this.state.activeFilters.length>0?"primary":"disabled"} style={{marginRight:12}}>Apply Filters</Button> 
+           <Button onClick={()=>this.setState({activeKey:"0"})} type="primary" disabled={this.state.activeFilters.length>0?false:true} style={{marginRight:12}}>Apply Filters</Button> 
            <div>
                {this.state.activeFilters.map(t=><Tag>{Math.round(Math.random()*10)+1} {Math.random()<=0.5?"brands":(Math.random()<=0.5?"flight status":"owner")} </Tag>)}
            </div>
@@ -118,7 +118,8 @@ export class TopFilterPanel extends React.Component<Props, State>  {
                if(this.state.activeFilters.length===0){
                 this.setState({activeFilters:[1]});
                }else{
-                this.setState({activeFilters:this.state.activeFilters.concat([this.state.activeFilters.length+1])});
+                   var newArray = [this.state.activeFilters.length+1];
+                this.setState({activeFilters:this.state.activeFilters.concat(newArray)});
                }
                }} icon="plus" style={{marginRight:12}} type="dashed"></Button><span style={{display:this.state.activeFilters.length!==0?"none":"inline-block"}}>No filters applied</span>
            </Panel> 
