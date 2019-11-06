@@ -1,5 +1,6 @@
 import React from 'react';
 import {TopLayout} from '../Layout';
+import {TopFilterPanel} from '../Filters';
 import { Card,Tooltip } from 'antd';
 import {Select, Option} from '../../components/Select';
 
@@ -144,3 +145,14 @@ filterPanel={(toggle)=>{return <div style={{position:"relative",height:"100%"}}>
   </Card></div>}}
 />
 </div>;
+
+
+
+export const filtersOnTop = () => <div>
+<TopLayout childrenType="report" 
+children={
+<div>
+    <TopFilterPanel style={{marginTop:24}}/>
+    <Card style={{marginTop:24,height:"140vh"}}>Reporting</Card>
+    </div>}/>
+</div>
