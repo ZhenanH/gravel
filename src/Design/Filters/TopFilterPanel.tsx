@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button,Radio,Collapse,Select, Tag } from 'antd';
+import {filters} from './filterOptions'
 //import {Select, Option} from '../../components/Select';
 const { Panel } = Collapse;
 const { Option } = Select;
@@ -9,23 +10,27 @@ interface Props {
 
 interface State {
     activeKey:string;
-    activeFilters:Array<number>;
+    activeFilters:Array<string>;
+    appliedFilters:Array<number>;
 }
 
+interface filterOptions {
+    [key:string]:Object;
+}
+
+
+
+
 const createFilter = (host:TopFilterPanel)=><div>
-    <Select     
+
+    <Select onChange={()=>host.setState({})}    
             placeholder="Select filter"
             style={{ width: 250,marginBottom:12 }}
-
+            //value={host.state.filterOptions}
           >
-         
-    <Option value="Brand">Brand</Option>
-    <Option value="Flight status">Flight status</Option>
-    <Option value="Owner">Owner</Option>
-    <Option value="OM">OM</Option>
-    <Option value="TAM">TAM</Option>
-    <Option value="BI Manager">BI Manager</Option>
-    <Option value="Flight end date">Flight end date</Option>
+      {
+         Object.keys(filters).map(k=><Option value={k}>{k}</Option>) 
+      }   
 </Select>
 <span style={{margin:"0px 12px 0 12px"}}>includes</span>
 <Select     
@@ -54,16 +59,19 @@ const createFilter = (host:TopFilterPanel)=><div>
 export class TopFilterPanel extends React.Component<Props, State>  {
     state = {
         activeKey:"0",
-        activeFilters:[] as number[],
+        activeFilters:[] as string[],
+        appliedFilters:[] as number[],
+   
     }
     render() {
+       //console.log('filter',filters);
         return (<div style={this.props.style}>
            <div style={{display:"flex",alignItems:"center"}}>
-           <Button onClick={()=>this.setState({activeKey:"0"})} type="primary" disabled={this.state.activeFilters.length>0?false:true} style={{marginRight:12}}>Apply Filters</Button> 
+           <Button onClick={()=>this.setState({activeKey:"0",appliedFilters:Object.assign([], this.state.activeFilters)})} type="primary" disabled={JSON.stringify(this.state.activeFilters)===JSON.stringify(this.state.appliedFilters)?true:false} style={{marginRight:12}}>Apply Filters</Button> 
            <div>
-               {this.state.activeFilters.map(t=><Tag>{Math.round(Math.random()*10)+1} {Math.random()<=0.5?"brands":(Math.random()<=0.5?"flight status":"owner")} </Tag>)}
+               {this.state.appliedFilters.map(t=><Tag>{Math.round(Math.random()*10)+1} {Math.random()<=0.5?"brands":(Math.random()<=0.5?"flight status":"owner")} </Tag>)}
            </div>
-           <Button type="link" icon={this.state.activeKey==="0"?"down":"up"} onClick={()=>this.setState({activeKey:this.state.activeKey==="0"?"1":"0"})}>{this.state.activeFilters.length===0?"Add Filters":( this.state.activeKey==="0"?"Show detail":"Hide detail")}</Button>
+           <Button type="link" icon={this.state.activeKey==="0"?"down":"up"} onClick={()=>this.setState({activeKey:this.state.activeKey==="0"?"1":"0"})}>{ this.state.activeKey!=="0"?"Hide detail":(this.state.activeFilters.length===0?"Add Filters":"Show detail")}</Button>
            <div style={{flex:1}}></div>
            <div style={{minWidth:180}}>
             <span style={{marginRight:8}}>Unit:</span>
@@ -119,12 +127,9 @@ export class TopFilterPanel extends React.Component<Props, State>  {
                
            
            <Button onClick={()=>{
-               if(this.state.activeFilters.length===0){
-                this.setState({activeFilters:[1]});
-               }else{
-                   var newArray = [this.state.activeFilters.length+1];
-                this.setState({activeFilters:this.state.activeFilters.concat(newArray)});
-               }
+                         
+                this.setState({activeFilters:this.state.activeFilters.concat(["new"])});
+               
                }} icon="plus" style={{marginRight:12}} type="dashed"></Button><span style={{display:this.state.activeFilters.length!==0?"none":"inline-block"}}>No filters applied</span>
            </Panel> 
            </Collapse>
