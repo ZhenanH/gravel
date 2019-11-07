@@ -12,7 +12,7 @@ interface State {
     activeFilters:Array<number>;
 }
 
-const createFilter = (active:boolean)=><div style={{display:active?"block":"none"}}>
+const createFilter = (host:TopFilterPanel)=><div>
     <Select     
             placeholder="Select filter"
             style={{ width: 250,marginBottom:12 }}
@@ -44,7 +44,11 @@ const createFilter = (active:boolean)=><div style={{display:active?"block":"none
     <Option value="Very long long long brand name4">Very long long long brand name4</Option>
     <Option value="Very long long long brand name5">Very long long long brand name5</Option>
 </Select>
-<Button type="dashed" shape="circle" icon="minus" size="small" style={{marginLeft:12}}/>
+<Button onClick={()=>{
+    var filters = host.state.activeFilters;
+    filters.pop();
+    host.setState({activeFilters:filters})}
+    } type="dashed" shape="circle" icon="minus" size="small" style={{marginLeft:12}}/>
 </div>
 
 export class TopFilterPanel extends React.Component<Props, State>  {
@@ -59,16 +63,16 @@ export class TopFilterPanel extends React.Component<Props, State>  {
            <div>
                {this.state.activeFilters.map(t=><Tag>{Math.round(Math.random()*10)+1} {Math.random()<=0.5?"brands":(Math.random()<=0.5?"flight status":"owner")} </Tag>)}
            </div>
-           <Button type="link" onClick={()=>this.setState({activeKey:this.state.activeKey==="0"?"1":"0"})}>{this.state.activeKey==="0"?"Show detail":"Hide detail"}</Button>
+           <Button type="link" icon={this.state.activeKey==="0"?"down":"up"} onClick={()=>this.setState({activeKey:this.state.activeKey==="0"?"1":"0"})}>{this.state.activeFilters.length===0?"Add Filters":( this.state.activeKey==="0"?"Show detail":"Hide detail")}</Button>
            <div style={{flex:1}}></div>
-           <div>
+           <div style={{minWidth:180}}>
             <span style={{marginRight:8}}>Unit:</span>
             <Radio.Group defaultValue={"PDM"}>
             <Radio.Button value="PDM">PDM</Radio.Button>
             <Radio.Button value="Dollars">Dollar</Radio.Button>
             </Radio.Group>
            </div>
-           <div>
+           <div style={{minWidth:320}}>
            <span style={{marginRight:8,marginLeft:24}}>Forecast type:</span>
             <Radio.Group defaultValue={"Capped"}>
             <Radio.Button value="Capped">Capped</Radio.Button>
@@ -110,7 +114,7 @@ export class TopFilterPanel extends React.Component<Props, State>  {
            <Collapse activeKey={[this.state.activeKey]} style={{marginTop:12}}>
            <Panel header="This is panel header 1" key="1">
            {
-               this.state.activeFilters.map((f,index)=>createFilter(true))
+               this.state.activeFilters.map((f,index)=>createFilter(this))
             }
                
            
