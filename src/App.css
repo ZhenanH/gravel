@@ -30,3 +30,7 @@
 .ant-layout-sider-trigger {
   position: static !important;
 }
+
+.doc-container {
+  margin:1em;
+}

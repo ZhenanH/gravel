@@ -1,17 +1,17 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
+//import { action } from '@storybook/addon-actions';
 import {Select, Option} from './Select';
 import { withDesign } from 'storybook-addon-designs';
 
 
 
-export default {
-  title: 'Components | Select',
-  parameters: {
-    component: Select,
-    componentSubtitle: 'An input widget to let user select a list of options in dropdown.',
-  },
-};
+// export default {
+//   title: 'Components | Select',
+//   parameters: {
+//     component: Select,
+//     componentSubtitle: 'An input widget to let user select a list of options in dropdown.',
+//   },
+// };
 
 export const basic = () => <div class="demo"><Select 
             defaultValue="Option A" 
