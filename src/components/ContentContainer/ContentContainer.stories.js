@@ -1,17 +1,17 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
+//import { action } from '@storybook/addon-actions';
 import {ContentContainer} from './ContentContainer';
 import {Button} from 'antd';
 import '../../App.css';
 
 
-export default {
-  title: 'Components | Container',
-  parameters: {
-    component: ContentContainer,
-    componentSubtitle: 'A container to host table, forms or other UI elements.',
-  },
-};
+// export default {
+//   title: 'Components | Container',
+//   parameters: {
+//     component: ContentContainer,
+//     componentSubtitle: 'A container to host table, forms or other UI elements.',
+//   },
+// };
 
 
 export const containerWithButton = () => <div className="demo">
