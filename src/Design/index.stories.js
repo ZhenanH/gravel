@@ -3,6 +3,7 @@ import React from 'react';
 import Intro  from './Intro';
 import Color  from './Color';
 import Text  from './Text';
+import Navigation  from './Navigation';
 
 export default {
   title: 'Design | Guideline',
@@ -24,4 +25,10 @@ export const text = () => <Text/>;
 
 text.story = {
   name: 'Text',
+};
+
+export const navigation = () => <Navigation/>;
+
+navigation.story = {
+  name: 'Layout specs',
 };
